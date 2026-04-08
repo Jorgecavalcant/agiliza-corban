@@ -1,0 +1,64 @@
+{
+  "name": "agiliza-corban",
+  "version": "1.0.0",
+  "description": "App Desktop Offline para Correspondentes",
+  "main": "main/main.js",
+  "scripts": {
+    "dev:next": "next dev",
+    "build:next": "next build",
+    "start:next": "next start",
+    "dev:electron": "electron .",
+    "build": "next build && electron-builder",
+    "dev": "next build && electron ."
+  },
+  "author": "JC Tecnologia",
+  "dependencies": {
+    "sql.js": "^1.10.3",
+    "serialport": "^12.0.0",
+    "lucide-react": "^0.364.0",
+    "next": "14.1.4",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.0.1",
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0"
+  },
+  "build": {
+    "appId": "com.jctecnologia.agilizacorban",
+    "productName": "Agiliza Corban",
+    "forceCodeSigning": false,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main/**/*",
+      "out/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "node_modules/sql.js/dist/sql-wasm.wasm",
+        "to": "sql-wasm.wasm"
+      }
+    ],
+    "win": {
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ],
+      "signingHashAlgorithms": null,
+      "sign": null
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Agiliza Corban"
+    }
+  }
+}
